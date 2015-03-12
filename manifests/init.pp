@@ -44,7 +44,8 @@ class sssd (
   $backends        = undef,
   $make_home_dir   = false,
   $filter_users    = [ 'root' ],
-  $filter_groups   = [ 'root' ]
+  $filter_groups   = [ 'root' ],
+  $offline_credentials_expiration = 0,
 ) {
   validate_array($domains)
   validate_array($filter_users)

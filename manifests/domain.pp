@@ -203,6 +203,15 @@ define sssd::domain (
   $ldap_default_authtok,
 
   $simple_allow_groups,
+  
+
+  $id_provider = 'ldap',
+  $auth_provider = 'krb5',
+  $chpass_provider = 'krb5',
+  $access_provider = 'simple',
+  $autofs_provider = 'krb5',
+
+  $ldap_backup_uri = undef,
 
   $ldap_user_object_class = 'user',
   $ldap_user_name = 'sAMAccountName',
@@ -224,12 +233,20 @@ define sssd::domain (
   $ldap_default_authtok_type = 'password',
   $ldap_schema = 'rfc2307bis',
   $enumerate = false,
+  $ldap_access_order = undef,
+  $ldap_access_filter = undef,
   $ldap_force_upper_case_realm = true,
   $ldap_referrals = false,
   $cache_credentials = false,
   $min_id = undef,
   $entry_cache_timeout = 60,
   $krb5_canonicalize = false,
+  
+  $ldap_search_timeout = 6,
+  $ldap_network_timeout = 60,
+  $ldap_opt_timeout = 60,
+  $ldap_purge_cache_timeout = 30,
+  
 ) {
   validate_array($simple_allow_groups)
   validate_bool($ldap_id_use_start_tls)
