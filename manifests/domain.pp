@@ -249,7 +249,6 @@ define sssd::domain (
   $ldap_tls_cacert_path = "/etc/sssd/cacerts/${ldap_domain}",
   
 ) {
-  validate_array($simple_allow_groups)
   validate_bool($ldap_id_use_start_tls)
   validate_bool($enumerate)
   validate_bool($ldap_force_upper_case_realm)
