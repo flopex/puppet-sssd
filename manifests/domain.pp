@@ -246,6 +246,7 @@ define sssd::domain (
   $ldap_network_timeout = 60,
   $ldap_opt_timeout = 60,
   $ldap_purge_cache_timeout = 30,
+  $ldap_tls_cacert_path = "/etc/sssd/cacerts/${ldap_domain}",
   
 ) {
   validate_array($simple_allow_groups)
@@ -273,7 +274,6 @@ define sssd::domain (
       ensure  => directory,
       mode    => '0500',
     }
-    $ldap_tls_cacert_path = "/etc/sssd/cacerts/${ldap_domain}"
     file { $ldap_tls_cacert_path:
       ensure  => present,
       content => $ldap_tls_cacert,
