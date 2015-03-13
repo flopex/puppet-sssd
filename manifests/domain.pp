@@ -228,6 +228,7 @@ define sssd::domain (
   $ldap_group_gid_number = 'gidNumber',
 
   $ldap_id_use_start_tls = true,
+  $ldap_tls_cacertdir = undef,
   $ldap_tls_reqcert = 'demand',
   $ldap_tls_cacert = undef,
   $ldap_default_authtok_type = 'password',
@@ -246,7 +247,6 @@ define sssd::domain (
   $ldap_network_timeout = 60,
   $ldap_opt_timeout = 60,
   $ldap_purge_cache_timeout = 30,
-  $ldap_tls_cacert_path = "/etc/sssd/cacerts/${ldap_domain}",
   
 ) {
   validate_bool($ldap_id_use_start_tls)
@@ -264,21 +264,6 @@ define sssd::domain (
     $real_min_id = $sssd::params::dist_uid_min
   } else {
     $real_min_id = $min_id
-  }
-
-  if ($ldap_tls_cacert != undef) {
-    $certdata = regsubst($ldap_tls_cacert, '[\n]', '', 'MG')
-    validate_re($certdata, '^-----BEGIN CERTIFICATE-----.*END CERTIFICATE-----$')
-    file { '/etc/sssd/cacerts':
-      ensure  => directory,
-      mode    => '0500',
-    }
-    file { $ldap_tls_cacert_path:
-      ensure  => present,
-      content => $ldap_tls_cacert,
-      mode    => '0400',
-      before  => Concat::Fragment["sssd_domain_${ldap_domain}"],
-    }
   }
 
   concat::fragment { "sssd_domain_${ldap_domain}":

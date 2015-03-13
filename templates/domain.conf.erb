@@ -36,8 +36,11 @@ ldap_access_filter = <%= @ldap_access_filter %>
 <% end -%>
 ldap_id_use_start_tls = <%= @ldap_id_use_start_tls %>
 ldap_tls_reqcert = <%= @ldap_tls_reqcert %>
-<% if @ldap_tls_cacert_path -%>
-ldap_tls_cacert = <%= @ldap_tls_cacert_path %>
+<% if @ldap_tls_cacertdir -%>
+ldap_tls_cacertdir = <%= @ldap_tls_cacertdir %>
+<% end -%>
+<% if @ldap_tls_cacert -%>
+ldap_tls_cacert = <%= @ldap_tls_cacert %>
 <% end -%>
 ldap_user_object_class = <%= @ldap_user_object_class %>
 ldap_user_name = <%= @ldap_user_name %>
