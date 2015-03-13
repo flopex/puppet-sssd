@@ -7,7 +7,9 @@ simple_allow_groups = <%= @simple_allow_groups.flatten.join(',') %>
 cache_credentials = <%= @cache_credentials %>
 min_id = <%= @real_min_id %>
 entry_cache_timeout = <%= @entry_cache_timeout %>
+<% if @krb5_realm -%>
 krb5_realm = <%= @krb5_realm %>
+<% end -%>
 krb5_canonicalize = <%= @krb5_canonicalize %>
 ldap_uri = <%= @ldap_uri %>
 <% if @ldap_backup_uri -%>

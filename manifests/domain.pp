@@ -197,7 +197,7 @@ define sssd::domain (
   $ldap_user_search_base=$ldap_search_base,
   $ldap_group_search_base=$ldap_search_base,
   $ldap_netgroup_search_base=$ldap_search_base,
-  $krb5_realm,
+  $krb5_realm = undef,
 
   $ldap_default_bind_dn,
   $ldap_default_authtok,
