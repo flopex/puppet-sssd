@@ -202,7 +202,7 @@ define sssd::domain (
   $ldap_default_bind_dn,
   $ldap_default_authtok,
 
-  $simple_allow_groups,
+  $simple_allow_groups = undef,
   
 
   $id_provider = 'ldap',
